@@ -80,6 +80,7 @@ int main( void )
 
 #define DEBUG_LEVEL 0
 
+#ifndef APP_HAS_OWN_MAIN
 static void my_debug( void *ctx, int level,
                       const char *file, int line,
                       const char *str )
@@ -89,13 +90,18 @@ static void my_debug( void *ctx, int level,
     mbedtls_fprintf( (FILE *) ctx, "%s:%04d: %s", file, line, str );
     fflush(  (FILE *) ctx  );
 }
+#endif
 
+#ifdef APP_HAS_OWN_MAIN
+int ssl_server_main( )
+#else
 int main( void )
+#endif
 {
     int ret, len;
     mbedtls_net_context listen_fd, client_fd;
-    unsigned char buf[1024];
-    const char *pers = "ssl_server";
+    unsigned char buf[1024]; 
+    const char *pers = "ssl_serverf";
 
     mbedtls_entropy_context entropy;
     mbedtls_ctr_drbg_context ctr_drbg;
@@ -126,7 +132,7 @@ int main( void )
     /*
      * 1. Load the certificates and private RSA key
      */
-    mbedtls_printf( "\n  . Loading the server cert. and key..." );
+    mbedtls_printf( "\n  . Loading the server certt. and key..." );
     fflush( stdout );
 
     /*
