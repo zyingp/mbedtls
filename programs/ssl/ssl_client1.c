@@ -190,7 +190,9 @@ int main( void )
         goto exit;
     }
 
-    mbedtls_ssl_set_bio( &ssl, &server_fd, mbedtls_net_send, mbedtls_net_recv, NULL );
+    #include "starter.h"
+    mbedtls_ssl_set_bio( &ssl, &server_fd, client_membuf_send, client_membuf_recv, NULL );
+    //mbedtls_ssl_set_bio( &ssl, &server_fd, mbedtls_net_send, mbedtls_net_recv, NULL );
 
     /*
      * 4. Handshake

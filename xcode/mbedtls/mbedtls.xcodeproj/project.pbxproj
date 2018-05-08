@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E3520E0F2069BC1A005F57F8 /* ring_buffer.c in Sources */ = {isa = PBXBuildFile; fileRef = E3520E0E2069BC1A005F57F8 /* ring_buffer.c */; };
 		E3E7234C205E6C3700F8CA81 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E7234B205E6C3700F8CA81 /* AppDelegate.m */; };
 		E3E7234F205E6C3700F8CA81 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E3E7234E205E6C3700F8CA81 /* ViewController.m */; };
 		E3E72351205E6C3700F8CA81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3E72350205E6C3700F8CA81 /* Assets.xcassets */; };
@@ -92,6 +93,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E3520E0D2069BC1A005F57F8 /* ring_buffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ring_buffer.h; sourceTree = "<group>"; };
+		E3520E0E2069BC1A005F57F8 /* ring_buffer.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ring_buffer.c; sourceTree = "<group>"; };
 		E3E72347205E6C3700F8CA81 /* mbedtls.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mbedtls.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3E7234A205E6C3700F8CA81 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E3E7234B205E6C3700F8CA81 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -493,6 +496,8 @@
 			children = (
 				E3E7264D205E8D1B00F8CA81 /* starter.h */,
 				E3E7264E205E8D1B00F8CA81 /* starter.c */,
+				E3520E0D2069BC1A005F57F8 /* ring_buffer.h */,
+				E3520E0E2069BC1A005F57F8 /* ring_buffer.c */,
 				E3E72443205E6C9500F8CA81 /* ssl_pthread_server.c */,
 				E3E72444205E6C9500F8CA81 /* dtls_client.c */,
 				E3E72455205E6C9500F8CA81 /* dtls_server.c */,
@@ -636,6 +641,7 @@
 				E3E72649205E6D0300F8CA81 /* base64.c in Sources */,
 				E3E72624205E6D0300F8CA81 /* asn1write.c in Sources */,
 				E3E72646205E6D0300F8CA81 /* ecp_curves.c in Sources */,
+				E3520E0F2069BC1A005F57F8 /* ring_buffer.c in Sources */,
 				E3E7260E205E6D0300F8CA81 /* ccm.c in Sources */,
 				E3E7262C205E6D0300F8CA81 /* x509.c in Sources */,
 				E3E72641205E6D0300F8CA81 /* pkcs12.c in Sources */,

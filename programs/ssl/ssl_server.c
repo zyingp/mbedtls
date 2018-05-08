@@ -255,14 +255,17 @@ reset:
     mbedtls_printf( "  . Waiting for a remote connection ..." );
     fflush( stdout );
 
-    if( ( ret = mbedtls_net_accept( &listen_fd, &client_fd,
-                                    NULL, 0, NULL ) ) != 0 )
-    {
-        mbedtls_printf( " failed\n  ! mbedtls_net_accept returned %d\n\n", ret );
-        goto exit;
-    }
-
-    mbedtls_ssl_set_bio( &ssl, &client_fd, mbedtls_net_send, mbedtls_net_recv, NULL );
+    #include "starter.h"
+    mbedtls_ssl_set_bio( &ssl, &client_fd, server_membuf_send, server_membuf_recv, NULL );
+    
+//    if( ( ret = mbedtls_net_accept( &listen_fd, &client_fd,
+//                                    NULL, 0, NULL ) ) != 0 )
+//    {
+//        mbedtls_printf( " failed\n  ! mbedtls_net_accept returned %d\n\n", ret );
+//        goto exit;
+//    }
+//
+//    mbedtls_ssl_set_bio( &ssl, &client_fd, mbedtls_net_send, mbedtls_net_recv, NULL );
 
     mbedtls_printf( " ok\n" );
 
@@ -277,7 +280,7 @@ reset:
         if( ret != MBEDTLS_ERR_SSL_WANT_READ && ret != MBEDTLS_ERR_SSL_WANT_WRITE )
         {
             mbedtls_printf( " failed\n  ! mbedtls_ssl_handshake returned %d\n\n", ret );
-            goto reset;
+            goto errorExit;
         }
     }
 
@@ -340,7 +343,7 @@ reset:
         if( ret == MBEDTLS_ERR_NET_CONN_RESET )
         {
             mbedtls_printf( " failed\n  ! peer closed the connection\n\n" );
-            goto reset;
+            goto errorExit;
         }
 
         if( ret != MBEDTLS_ERR_SSL_WANT_READ && ret != MBEDTLS_ERR_SSL_WANT_WRITE )
@@ -361,15 +364,16 @@ reset:
             ret != MBEDTLS_ERR_SSL_WANT_WRITE )
         {
             mbedtls_printf( " failed\n  ! mbedtls_ssl_close_notify returned %d\n\n", ret );
-            goto reset;
+            goto errorExit;
         }
     }
 
     mbedtls_printf( " ok\n" );
 
     ret = 0;
-    goto reset;
+    goto errorExit;
 
+errorExit:
 exit:
 
 #ifdef MBEDTLS_ERROR_C
